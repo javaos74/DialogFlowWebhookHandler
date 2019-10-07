@@ -36,7 +36,7 @@ class Orchestrator:
         url = "https://platform.uipath.com/cloudrpa/api/account/%s/getAllServiceInstances" %(self.accountLogicalName)
         hdr = {'Authorization': 'Bearer ' + self.idToken}
         resp = requests.request('GET', url, headers=hdr).json()
-        print(resp)
+        #print(resp)
         self.tenantName = resp[0]['serviceInstanceLogicalName']
         self.url = 'https://platform.uipath.com/%s/%s/' %(self.accountLogicalName, self.tenantName)
         return resp[0]['serviceInstanceLogicalName']
@@ -44,8 +44,8 @@ class Orchestrator:
     def request(self, type, extension, body=None):
         uri = self.url + extension
         hdr = self.__getHeaders(extension)
-        print(uri)
-        print(hdr)
+        #print(uri)
+        #print(hdr)
         resp = requests.request(type.upper(), uri, data=body, headers=hdr).json()
         return resp
 
